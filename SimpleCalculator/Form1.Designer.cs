@@ -282,6 +282,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.CancelButton = this.gtfoButton;
             this.ClientSize = new System.Drawing.Size(194, 216);
             this.Controls.Add(this.displayLabel);
@@ -305,7 +306,7 @@
             this.Controls.Add(this.num8Button);
             this.Controls.Add(this.num7Button);
             this.Controls.Add(this.textBox);
-            this.MaximumSize = new System.Drawing.Size(210, 254);
+            this.MaximumSize = new System.Drawing.Size(500, 254);
             this.MinimumSize = new System.Drawing.Size(210, 254);
             this.Name = "Form1";
             this.Text = "Calculator";

@@ -16,3 +16,4 @@ C:\Users\michael.BEETOOBI\Desktop\SimpleCalculator\SimpleCalculator\bin\Debug\Si
 C:\Users\michael.BEETOOBI\Desktop\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.pdb
 C:\Users\michael.BEETOOBI\Desktop\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.exe
 C:\Users\michael.BEETOOBI\Desktop\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.pdb
+C:\Users\michael.BEETOOBI\Desktop\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.csprojResolveAssemblyReference.cache
