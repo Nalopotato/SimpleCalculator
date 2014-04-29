@@ -1,12 +1,14 @@
 ﻿//Michael Grammer - 06/05/2013
+//Updated logic March 2014
 
 //Very simple calculator program, modeled after the Windows built-in calculator. Will have sqrrt and other functions later.
 //As of now, only handles addition, sub, multi and division, as well as decimals.
-//Need to add better visiuals, such as what function key was pressed, i.e. "+" or "/"
+//DONE - Need to add better visiuals, such as what function key was pressed, i.e. "+" or "/"
 //Adding a form that displays the most recent entries/answers may be nice
 
-//Tested and found 1 bug: If a function key is pressed with a null textBox, closes form due to an attempt at converting oldNum (a null val) toDouble.
-//To fix this, added if (textExists) conditional to oldNum toDouble conversion under function buttons
+//Fixed/changed since:
+//    Tested and found 1 bug: If a function key is pressed with a null textBox, throws exception due to an attempt at converting oldNum (a null val) toDouble.
+//    To fix this, added if (textExists) conditional to oldNum toDouble conversion under function buttons
 
 using System;
 using System.Collections.Generic;
@@ -21,14 +23,15 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        //Global Vars
-        bool canMath = false;
+        #region Globals
+        bool clearTB = false;
         bool functionPressed = false;
 
-        int functionSwitch = 5;
+        int functionSwitch = 0;
         double oldNum = 0; //First number entered
         double newNum = 0; //Second number entered
         double answer = 1337;
+        #endregion
 
         public Form1()
         {
@@ -40,7 +43,7 @@ namespace WindowsFormsApplication1
             textBox.Focus();
         }
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyPress) //Method to handle key presses
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyPress) //Handles keyboard input
         {
             //Function buttons and period button
             if (keyPress == Keys.Add)
@@ -66,9 +69,12 @@ namespace WindowsFormsApplication1
             if (keyPress == Keys.OemPeriod || keyPress == Keys.Decimal)
             {
                 periodButton.PerformClick();
-                
             }
             if (keyPress == Keys.Back)
+            {
+                backspaceButton.PerformClick();
+            }
+            if (keyPress == Keys.Delete)
             {
                 backspaceButton.PerformClick();
             }
@@ -118,57 +124,63 @@ namespace WindowsFormsApplication1
             return base.ProcessCmdKey(ref msg, keyPress);
         }
 
+        #region Operator Button Events
         private void addButton_Click(object sender, EventArgs e)
         {
-            displayLabel.Text = textBox.Text + " + ";
             functionSwitch = 1;
-
-            DoMath();
-
-            functionPressed = true;
+            OperatorFunction(" + ");
         }
 
         private void subButton_Click(object sender, EventArgs e)
         {
-            displayLabel.Text = textBox.Text + " - ";
             functionSwitch = 2;
-
-            DoMath();
-
-            functionPressed = true;
+            OperatorFunction(" - ");
         }
 
         private void multiButton_Click(object sender, EventArgs e)
         {
-            displayLabel.Text = textBox.Text + " * ";
             functionSwitch = 3;
-
-            DoMath();
-
-            functionPressed = true;
+            OperatorFunction(" * ");
         }
 
         private void divideButton_Click(object sender, EventArgs e)
         {
-            displayLabel.Text = textBox.Text + " / ";
             functionSwitch = 4;
-
-            DoMath();
-
-            functionPressed = true;
+            OperatorFunction(" / ");
         }
+        #endregion
 
+        #region Mathematics
         private void equalButton_Click(object sender, EventArgs e)
         {
-            DoMath();
-            displayLabel.Text = displayLabel.Text + " = " + answer.ToString();
+            displayLabel.Text += textBox.Text;
 
-            functionPressed = true;
+            if (functionPressed)
+            {
+                if (functionPressed && textBox.Text != "")
+                {
+                    newNum = Convert.ToDouble(textBox.Text);
+                }
+                else if (textBox.Text != "")
+                {
+                    oldNum = Convert.ToDouble(textBox.Text);
+                }
+
+                if (newNum != 0 && oldNum != 0)
+                {
+                    DoMath();
+
+                    displayLabel.Text += " = " + answer.ToString();
+                    newNum = 0;
+                }
+
+                functionPressed = false;
+            }
         }
 
         private void DoMath()
         {
-            if (textBox.Text != null && canMath) //If textExists is true, there should be 2 nums, and if there is a number in textBox, choose the function whose button was pressed
+            if (textBox.Text != null)
             {
                 switch (functionSwitch)
                 {
@@ -192,75 +204,99 @@ namespace WindowsFormsApplication1
                         break;
                 }
                 textBox.Text = answer.ToString();
+                clearTB = true;
             }
         }
 
-        private void numbers(int numSelection) //Handles All Number Key Presses
+        private void OperatorFunction(string operatorKey)
         {
-            if (functionPressed) //If theres a num there and a function button HAS been pressed, clear the box and
-            {                       //set the bool to false before putting a new number.
-                if (textBox.TextLength > 0)
-                    oldNum = Convert.ToDouble(textBox.Text);
-                textBox.Clear();
-                functionPressed = false;
-                canMath = true;
+            if (functionPressed && textBox.Text != "")
+            {
+                newNum = Convert.ToDouble(textBox.Text);
+                displayLabel.Text += newNum + operatorKey;
             }
-            //if text exists, but no function button has been pressed, just concat the digits!
-            textBox.Text = textBox.Text.ToString() + numSelection;
-            newNum = Convert.ToDouble(textBox.Text);
+            else if (textBox.Text != "")
+            {
+                oldNum = Convert.ToDouble(textBox.Text);
+                displayLabel.Text = oldNum + operatorKey;
+            }
 
-            if (!displayLabel.Text.Contains("="))
-                displayLabel.Text += numSelection;
+            if (newNum == 0)
+            {
+                textBox.Clear();
+            }
+            else
+            {
+                DoMath();
+                oldNum = answer;
+            }
+
+            functionPressed = true;
         }
 
+        private void Numbers(int numSelection)
+        {
+            if (clearTB)
+            {
+                textBox.Text = numSelection.ToString();
+                clearTB = false;
+            }
+            else
+            {
+                textBox.Text += numSelection.ToString();
+            }
+        }
+        #endregion
+
+        #region Number Button Events
         private void num1Button_Click(object sender, EventArgs e)
         {
-            numbers(1);
+            Numbers(1);
         }
 
         private void num2Button_Click(object sender, EventArgs e)
         {
-            numbers(2);
+            Numbers(2);
         }
 
         private void num3Button_Click(object sender, EventArgs e)
         {
-            numbers(3);
+            Numbers(3);
         }
 
         private void num4Button_Click(object sender, EventArgs e)
         {
-            numbers(4);
+            Numbers(4);
         }
 
         private void num5Button_Click(object sender, EventArgs e)
         {
-            numbers(5);
+            Numbers(5);
         }
 
         private void num6Button_Click(object sender, EventArgs e)
         {
-            numbers(6);
+            Numbers(6);
         }
 
         private void num7Button_Click(object sender, EventArgs e)
         {
-            numbers(7);
+            Numbers(7);
         }
 
         private void num8Button_Click(object sender, EventArgs e)
         {
-            numbers(8);
+            Numbers(8);
         }
 
         private void num9Button_Click(object sender, EventArgs e)
         {
-            numbers(9);
+            Numbers(9);
         }
 
         private void num0Button_Click(object sender, EventArgs e)
         {
-            numbers(0);
+            Numbers(0);
         }
 
         private void periodButton_Click(object sender, EventArgs e)
@@ -268,17 +304,20 @@ namespace WindowsFormsApplication1
             if (!textBox.Text.Contains(".")) //Makes sure user can't type "47.....53567...0" for example.
             textBox.Text = textBox.Text.ToString() + ".";
         }
+        #endregion
 
+        #region Other Events
         private void clearButton_Click(object sender, EventArgs e) //Returns everything to default for new entry and returns focus
         {
             textBox.Clear();
             displayLabel.Text = "";
 
             functionPressed = false;
-            canMath = false;
-            functionSwitch = 5;
+            clearTB = false;
+            functionSwitch = 0;
             newNum = 0;
             oldNum = 0;
+            answer = 0;
         }
 
         private void gtfoButton_Click(object sender, EventArgs e)  //Opens msgbox when pressing "Esc" and works fine, but does not work when "Visible" property of btn set to false
@@ -296,15 +335,17 @@ namespace WindowsFormsApplication1
             {
                 textBox.Text = textBox.Text.Substring(0, textBox.Text.Length - 1);
 
-                if (textBox.Text == "") //Added this to fix the bug mentioned at the top
+                if (textBox.Text == "")
                 {
                     functionPressed = false;
-                    canMath = false;
-                    functionSwitch = 5;
+                    clearTB = false;
+                    functionSwitch = 0;
                     newNum = 0;
                     oldNum = 0;
+                    answer = 0;
                 }
             }
         }
+        #endregion
     }
 }
