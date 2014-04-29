@@ -1,0 +1,19 @@
+C:\Users\Michael\documents\visual studio 2010\Projects\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.exe
+C:\Users\Michael\documents\visual studio 2010\Projects\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.pdb
+C:\Users\Michael\documents\visual studio 2010\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Michael\documents\visual studio 2010\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\Michael\documents\visual studio 2010\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\Michael\documents\visual studio 2010\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Michael\documents\visual studio 2010\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Michael\documents\visual studio 2010\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.exe
+C:\Users\Michael\documents\visual studio 2010\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.pdb
+D:\0 ALL BACKUP 0\Users backslash Michael (My Docs)\Visual Studio 2010\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.exe
+D:\0 ALL BACKUP 0\Users backslash Michael (My Docs)\Visual Studio 2010\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.pdb
+C:\Users\michael.BEETOOBI\Desktop\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.exe
+C:\Users\michael.BEETOOBI\Desktop\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.pdb
+C:\Users\michael.BEETOOBI\Desktop\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.exe
+C:\Users\michael.BEETOOBI\Desktop\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.pdb
+C:\Users\michael.BEETOOBI\Desktop\SimpleCalculator\SimpleCalculator\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\michael.BEETOOBI\Desktop\SimpleCalculator\SimpleCalculator\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\michael.BEETOOBI\Desktop\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.csproj.GenerateResource.Cache
+C:\Users\michael.BEETOOBI\Desktop\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.csprojResolveAssemblyReference.cache
