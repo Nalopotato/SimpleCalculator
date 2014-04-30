@@ -1,6 +1,15 @@
 ﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Example.aspx.vb" Inherits="Example" MasterPageFile="~/ourmasterpage.master" %>
 <%@ MasterType VirtualPath="~/ourmasterpage.master" %>
 
+<%--This head and links are uneccessary because this is the code from the master file, but I wanted you to be able to see it.--%>
+<%--This is where we reference out AJAX script manager as well.  We've also moved a lot of our Register statements to be universal in the web.config file.--%>
+<head id="Head1" runat="server">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/G3.css" />
+    <script src="/scripts/G3.js"></script>
+</head>
+
 <asp:Content ID="JavaContent" ContentPlaceHolderID="HtmlHeadPlaceholder" runat="server">
     <script type="text/javascript">
 
