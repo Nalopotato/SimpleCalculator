@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class Form1
+    partial class Form1MainWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Windows Form Designer initialization
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -58,7 +58,6 @@
             this.textBox.ReadOnly = true;
             this.textBox.Size = new System.Drawing.Size(163, 20);
             this.textBox.TabIndex = 0;
-            this.textBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // num7Button
             // 
@@ -278,7 +277,7 @@
             this.displayLabel.Size = new System.Drawing.Size(0, 17);
             this.displayLabel.TabIndex = 20;
             // 
-            // Form1
+            // Form1MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -308,7 +307,7 @@
             this.Controls.Add(this.textBox);
             this.MaximumSize = new System.Drawing.Size(500, 254);
             this.MinimumSize = new System.Drawing.Size(210, 254);
-            this.Name = "Form1";
+            this.Name = "Form1MainWindow";
             this.Text = "Calculator";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

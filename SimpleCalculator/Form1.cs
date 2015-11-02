@@ -21,7 +21,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Form1 : Form
+    public partial class Form1MainWindow : Form
     {
         #region Globals
         bool clearTB = false;
@@ -33,7 +33,7 @@ namespace WindowsFormsApplication1
         double answer = 1337;
         #endregion
 
-        public Form1()
+        public Form1MainWindow()
         {
             InitializeComponent();
         }
@@ -62,7 +62,7 @@ namespace WindowsFormsApplication1
             {
                 divideButton.PerformClick();
             }
-            if (keyPress == Keys.Enter) //Rarely acts funny/doesn't work as it should.
+            if (keyPress == Keys.Enter) //Bug: If the Focus is set on any other button, it will activate that button's event first.  This should now be fixed.
             {
                 equalButton.PerformClick();
             }
@@ -153,10 +153,11 @@ namespace WindowsFormsApplication1
         #region Mathematics
         private void equalButton_Click(object sender, EventArgs e)
         {
-            displayLabel.Text += textBox.Text;
+            
 
             if (functionPressed)
             {
+                displayLabel.Text += textBox.Text;
                 if (functionPressed && textBox.Text != "")
                 {
                     newNum = Convert.ToDouble(textBox.Text);
@@ -318,6 +319,8 @@ namespace WindowsFormsApplication1
             newNum = 0;
             oldNum = 0;
             answer = 0;
+
+            this.Width = 210;
         }
 
         private void gtfoButton_Click(object sender, EventArgs e)  //Opens msgbox when pressing "Esc" and works fine, but does not work when "Visible" property of btn set to false
