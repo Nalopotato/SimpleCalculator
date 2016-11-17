@@ -1,36 +1,29 @@
 ﻿//Michael Grammer - 06/05/2013
-//Updated logic March 2014
 
-//Very simple calculator program, modeled after the Windows built-in calculator. Will have sqrrt and other functions later.
+//Simple calculator program, modeled after the Windows calculator. Will have sqrrt and other functions later.
 //As of now, only handles addition, sub, multi and division, as well as decimals.
 //DONE - Need to add better visiuals, such as what function key was pressed, i.e. "+" or "/"
 //Adding a form that displays the most recent entries/answers may be nice
 
 //Fixed/changed since:
-//    Tested and found 1 bug: If a function key is pressed with a null textBox, throws exception due to an attempt at converting oldNum (a null val) toDouble.
+//    Tested and found 1 bug: If a function key is pressed with a null textBox, throws exception due to an attempt at converting oldNum (a null val) to Double.
 //    To fix this, added if (textExists) conditional to oldNum toDouble conversion under function buttons
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
     public partial class Form1MainWindow : Form
     {
-        #region Globals
-        bool clearTB = false;
+        #region Globals/Initialization
+        bool clearText = false;
         bool functionPressed = false;
 
         int functionSwitch = 0;
-        double oldNum = 0; //First number entered
-        double newNum = 0; //Second number entered
-        double answer = 1337;
+        string oldNum; //First number entered
+        string newNum; //Number entered after function key is pressed
+        double answer;
         #endregion
 
         public Form1MainWindow()
@@ -128,51 +121,49 @@ namespace WindowsFormsApplication1
         private void addButton_Click(object sender, EventArgs e)
         {
             functionSwitch = 1;
-            OperatorFunction(" + ");
+            OperatorClicked(" + ");
         }
 
         private void subButton_Click(object sender, EventArgs e)
         {
             functionSwitch = 2;
-            OperatorFunction(" - ");
+            OperatorClicked(" - ");
         }
 
         private void multiButton_Click(object sender, EventArgs e)
         {
             functionSwitch = 3;
-            OperatorFunction(" * ");
+            OperatorClicked(" * ");
         }
 
         private void divideButton_Click(object sender, EventArgs e)
         {
             functionSwitch = 4;
-            OperatorFunction(" / ");
+            OperatorClicked(" / ");
         }
         #endregion
 
         #region Mathematics
         private void equalButton_Click(object sender, EventArgs e)
         {
-            
-
             if (functionPressed)
             {
                 displayLabel.Text += textBox.Text;
                 if (functionPressed && textBox.Text != "")
                 {
-                    newNum = Convert.ToDouble(textBox.Text);
+                    newNum = textBox.Text;
                 }
                 else if (textBox.Text != "")
                 {
-                    oldNum = Convert.ToDouble(textBox.Text);
+                    oldNum = textBox.Text;
                 }
 
-                if (newNum != 0 && oldNum != 0)
+                if (newNum != null && oldNum != null)
                 {
                     DoMath();
 
                     displayLabel.Text += " = " + answer.ToString();
-                    newNum = 0;
+                    newNum = null;
                 }
 
                 functionPressed = false;
@@ -186,65 +177,72 @@ namespace WindowsFormsApplication1
                 switch (functionSwitch)
                 {
                     case 1: //Add
-                        answer = oldNum + newNum;
+                        answer = Convert.ToDouble(oldNum) + Convert.ToDouble(newNum);
                         break;
 
-                    case 2: //Sub
-                        answer = oldNum - newNum;
+                    case 2: //Subtract
+                        answer = Convert.ToDouble(oldNum) - Convert.ToDouble(newNum);
                         break;
 
-                    case 3: //Multi
-                        answer = oldNum * newNum;
+                    case 3: //Multiply
+                        answer = Convert.ToDouble(oldNum) * Convert.ToDouble(newNum);
                         break;
 
                     case 4: //Divide
-                        answer = oldNum / newNum;
+                        answer = Convert.ToDouble(oldNum) / Convert.ToDouble(newNum);
                         break;
 
                     default:
                         break;
                 }
                 textBox.Text = answer.ToString();
-                clearTB = true;
+                clearText = true;
             }
         }
 
-        private void OperatorFunction(string operatorKey)
+        private void OperatorClicked(string operatorKey)
         {
-            if (functionPressed && textBox.Text != "")
+            if (functionPressed)
             {
-                newNum = Convert.ToDouble(textBox.Text);
-                displayLabel.Text += newNum + operatorKey;
+                if (textBox.Text != "")
+                {
+                    newNum = textBox.Text;
+                    displayLabel.Text += newNum + operatorKey;
+                }
+                else
+                {
+                    displayLabel.Text = oldNum + operatorKey;
+                }
             }
             else if (textBox.Text != "")
             {
-                oldNum = Convert.ToDouble(textBox.Text);
+                oldNum = textBox.Text;
                 displayLabel.Text = oldNum + operatorKey;
             }
 
-            if (newNum == 0)
+            if (newNum == null)
             {
                 textBox.Clear();
             }
             else
             {
                 DoMath();
-                oldNum = answer;
+                oldNum = Convert.ToString(answer);
             }
 
             functionPressed = true;
         }
 
-        private void Numbers(int numSelection)
+        private void Numbers(string numSelection)
         {
-            if (clearTB)
+            if (clearText)
             {
-                textBox.Text = numSelection.ToString();
-                clearTB = false;
+                textBox.Text = numSelection;
+                clearText = false;
             }
             else
             {
-                textBox.Text += numSelection.ToString();
+                textBox.Text += numSelection;
             }
         }
         #endregion
@@ -252,52 +250,52 @@ namespace WindowsFormsApplication1
         #region Number Button Events
         private void num1Button_Click(object sender, EventArgs e)
         {
-            Numbers(1);
+            Numbers("1");
         }
 
         private void num2Button_Click(object sender, EventArgs e)
         {
-            Numbers(2);
+            Numbers("2");
         }
 
         private void num3Button_Click(object sender, EventArgs e)
         {
-            Numbers(3);
+            Numbers("3");
         }
 
         private void num4Button_Click(object sender, EventArgs e)
         {
-            Numbers(4);
+            Numbers("4");
         }
 
         private void num5Button_Click(object sender, EventArgs e)
         {
-            Numbers(5);
+            Numbers("5");
         }
 
         private void num6Button_Click(object sender, EventArgs e)
         {
-            Numbers(6);
+            Numbers("6");
         }
 
         private void num7Button_Click(object sender, EventArgs e)
         {
-            Numbers(7);
+            Numbers("7");
         }
 
         private void num8Button_Click(object sender, EventArgs e)
         {
-            Numbers(8);
+            Numbers("8");
         }
 
         private void num9Button_Click(object sender, EventArgs e)
         {
-            Numbers(9);
+            Numbers("9");
         }
 
         private void num0Button_Click(object sender, EventArgs e)
         {
-            Numbers(0);
+            Numbers("0");
         }
 
         private void periodButton_Click(object sender, EventArgs e)
@@ -314,13 +312,13 @@ namespace WindowsFormsApplication1
             displayLabel.Text = "";
 
             functionPressed = false;
-            clearTB = false;
+            clearText = false;
             functionSwitch = 0;
-            newNum = 0;
-            oldNum = 0;
+            newNum = null;
+            oldNum = null;
             answer = 0;
 
-            this.Width = 210;
+            Width = 210;
         }
 
         private void gtfoButton_Click(object sender, EventArgs e)  //Opens msgbox when pressing "Esc" and works fine, but does not work when "Visible" property of btn set to false
@@ -341,10 +339,10 @@ namespace WindowsFormsApplication1
                 if (textBox.Text == "")
                 {
                     functionPressed = false;
-                    clearTB = false;
+                    clearText = false;
                     functionSwitch = 0;
-                    newNum = 0;
-                    oldNum = 0;
+                    newNum = null;
+                    oldNum = null;
                     answer = 0;
                 }
             }

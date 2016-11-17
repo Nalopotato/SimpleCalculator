@@ -25,3 +25,11 @@ C:\Users\Michael\Documents\Visual Studio 2012\Projects\SimpleCalc\SimpleCalculat
 C:\Users\Michael\Documents\Visual Studio 2012\Projects\SimpleCalc\SimpleCalculator\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\Michael\Documents\Visual Studio 2012\Projects\SimpleCalc\SimpleCalculator\obj\x86\Debug\SimpleCalculator.csproj.GenerateResource.Cache
 C:\Users\Michael\Documents\Visual Studio 2012\Projects\SimpleCalc\SimpleCalculator\obj\x86\Debug\WindowsFormsApplication1.Form1MainWindow.resources
+C:\Users\msgra\OneDrive\Documents\Visual Studio 2015\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.exe
+C:\Users\msgra\OneDrive\Documents\Visual Studio 2015\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.pdb
+C:\Users\msgra\OneDrive\Documents\Visual Studio 2015\Projects\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.exe
+C:\Users\msgra\OneDrive\Documents\Visual Studio 2015\Projects\SimpleCalculator\SimpleCalculator\bin\Debug\SimpleCalculator.pdb
+C:\Users\msgra\OneDrive\Documents\Visual Studio 2015\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.csprojResolveAssemblyReference.cache
+C:\Users\msgra\OneDrive\Documents\Visual Studio 2015\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\WindowsFormsApplication1.Form1MainWindow.resources
+C:\Users\msgra\OneDrive\Documents\Visual Studio 2015\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\msgra\OneDrive\Documents\Visual Studio 2015\Projects\SimpleCalculator\SimpleCalculator\obj\x86\Debug\SimpleCalculator.csproj.GenerateResource.Cache
